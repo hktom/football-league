@@ -18,46 +18,25 @@ function Schedule() {
     <Layout title="League Schedule">
       <TableContainer>
         <Table variant="striped" colorScheme="teal">
-          <TableCaption>Imperial to metric conversion factors</TableCaption>
-          <Thead>
+          <Thead h="40px" backgroundColor="table.bg_header">
             <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-              <Th isNumeric>multiply by</Th>
+              <Th textAlign="left">Date/Time</Th>
+              <Th textAlign="left">Stadium</Th>
+              <Th textAlign="right">Home Team</Th>
+              <Th textAlign="left">Away Team</Th>
             </Tr>
           </Thead>
           <Tbody>
-            <Tr>
-              <Td>inches</Td>
-              <Td>millimetres (mm)</Td>
-              <Td isNumeric>25.4</Td>
-            </Tr>
-            <Tr>
-              <Td>feet</Td>
-              <Td>centimetres (cm)</Td>
-              <Td isNumeric>30.48</Td>
-            </Tr>
-            <Tr>
-              <Td>yards</Td>
-              <Td>metres (m)</Td>
-              <Td isNumeric>0.91444</Td>
+            <Tr h="70px">
+              <Td textAlign="left">inches</Td>
+              <Td textAlign="left" w="70%">millimetres (mm)</Td>
+              <Td textAlign="right">25.4</Td>
+              <Td textAlign="left">25.4</Td>
             </Tr>
           </Tbody>
-          <Tfoot>
-            <Tr>
-              <Th>To convert</Th>
-              <Th>into</Th>
-              <Th isNumeric>multiply by</Th>
-            </Tr>
-          </Tfoot>
         </Table>
       </TableContainer>
     </Layout>
-    // <Box>
-    //   <Heading textAlign={"center"}>League Schedule</Heading>
-
-    //   <Box maxW="90%" mx="auto" mt="20px"></Box>
-    // </Box>
   );
 }
 
