@@ -1,3 +1,5 @@
+import axios from "axios";
+
 /**
  * A class representing a service that processes the data for match schedule
  * and generates leaderboard.
@@ -10,6 +12,9 @@
  */
 class LeagueService {    
     
+    matches = [];
+    success = false;
+
     /**
      * Sets the match schedule.
      * Match schedule will be given in the following form:
@@ -36,14 +41,18 @@ class LeagueService {
      * 
      * @param {Array} matches List of matches.
      */    
-    setMatches(matches) {}
+    setMatches(matches) {
+        this.matches = matches;
+    }
 
     /**
      * Returns the full list of matches.
      * 
      * @returns {Array} List of matches.
      */
-    getMatches() {}
+    getMatches() {
+        return this.matches;
+    }
 
     /**
      * Returns the leaderboard in a form of a list of JSON objecs.
@@ -65,7 +74,24 @@ class LeagueService {
     /**
      * Asynchronic function to fetch the data from the server.
      */
-    async fetchData() {}    
+    async fetchData() {
+        // axios header
+        const fetcher = axios.create({
+            baseURL: 'http://127.0.0.1:3001/api',
+            headers: { 
+                'Authorization': 'Bearer YuHBdSlDXY000xa8IlCm7Qgq4_s'
+              }
+          });
+          
+        try {
+            const response = await fetcher.get('/v1/getAllMatches');
+            const { matches, success } = response.data;
+            this.setMatches(matches);
+            this.success = success;
+        } catch (error) {
+            this.success = false;
+        }
+    }    
 }
 
 export default LeagueService;
