@@ -118,44 +118,14 @@ LeaderBoardTeams.prototype.orderByHeadPoints = function () {
 
     });
 
-    if(leadsWithSamePoints.length === 2){
+    leadsWithSamePoints = this.orderForTwoMore(leadsWithSamePoints);
 
-        leadsWithSamePoints = this.orderForTwoTeams(leadsWithSamePoints);
-    }
-    else{
-        leadsWithSamePoints = this.orderForTwoMore(leadsWithSamePoints);
-    }
 
     this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
     this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
 
 };
 
-LeaderBoardTeams.prototype.orderForTwoTeams = function (leadsWithSamePoints) {
-
-    return leadsWithSamePoints.sort((a, b)=>{
-
-        let matches = this.matches.filter((match)=> match.homeTeam === a.teamName || match.awayTeam === a.teamName || match.homeTeam === b.teamName || match.awayTeam === b.teamName);
-
-        let totalWinForA = matches.filter((match)=> {
-            
-            if(match.homeTeam === a.teamName) return  match.homeTeamScore > match.awayTeamScore;
-            else return match.awayTeamScore > match.homeTeamScore;
-
-        }).length;
-
-        let totalWinForB = matches.filter((match)=> {
-            if(match.homeTeam === b.teamName) return  match.homeTeamScore > match.awayTeamScore;
-            else return match.awayTeamScore > match.homeTeamScore;
-        }).length;
-
-        if(totalWinForA > totalWinForB) return -1;
-        
-        if(totalWinForA < totalWinForB) return 1;
-
-        return 0;
-    });
-};
 
 LeaderBoardTeams.prototype.orderForTwoMore = function (leadsWithSamePoints) {
 
