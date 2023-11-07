@@ -107,7 +107,6 @@ LeaderBoardTeams.prototype.orderByPoints = function () {
 
 LeaderBoardTeams.prototype.orderByHeadPoints = function () {
 
-    console.log(this.leaderBoards);
 
     let leadsWithSamePoints = [];
     this.leaderBoards.forEach((lead, index, leads)=>{
@@ -119,7 +118,22 @@ LeaderBoardTeams.prototype.orderByHeadPoints = function () {
 
     });
 
-    leadsWithSamePoints.sort((a, b)=>{
+    if(leadsWithSamePoints.length === 2){
+
+        leadsWithSamePoints = this.orderForTwoTeams(leadsWithSamePoints);
+    }
+    else{
+        leadsWithSamePoints = this.orderForTwoMore(leadsWithSamePoints);
+    }
+
+    this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
+    this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
+
+};
+
+LeaderBoardTeams.prototype.orderForTwoTeams = function (leadsWithSamePoints) {
+
+    return leadsWithSamePoints.sort((a, b)=>{
 
         let matches = this.matches.filter((match)=> match.homeTeam === a.teamName || match.awayTeam === a.teamName || match.homeTeam === b.teamName || match.awayTeam === b.teamName);
 
@@ -141,10 +155,25 @@ LeaderBoardTeams.prototype.orderByHeadPoints = function () {
 
         return 0;
     });
+};
 
-    this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
-    this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
+LeaderBoardTeams.prototype.orderForTwoMore = function (leadsWithSamePoints) {
 
+
+    let matches = this.matches.filter((match)=>{
+        let indexA = leadsWithSamePoints.findIndex((lead)=> lead.teamName === match.homeTeam);
+        let indexB = leadsWithSamePoints.findIndex((lead)=> lead.teamName === match.awayTeam);
+
+        return indexA !== -1 && indexB !== -1;
+    });
+
+    let minLeads = new LeaderBoardTeams();
+    minLeads.getMatches(matches);
+    minLeads.setLeaderBoard("homeTeam", "homeTeamScore", "awayTeamScore");
+    minLeads.setLeaderBoard("awayTeam", "awayTeamScore", "homeTeamScore");
+    minLeads.orderByPoints();
+
+    return minLeads.leaderBoards;
 };
 
 LeaderBoardTeams.prototype.orderByGoalDifference = function () {
