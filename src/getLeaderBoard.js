@@ -64,21 +64,23 @@ LeaderBoardTeams.prototype.setLeaderBoard = function (team, home, away) {
         new LeaderBoard(
           matche[team],
           matche.matchPlayed ? 1 : 0,
-          matche[home],
-          matche[away],
-          Math.abs(matche[home] - matche[away]),
-          this.getPoints(matche[home], matche[away])
+          matche.matchPlayed ? matche[home] : 0,
+          matche.matchPlayed ? matche[away] : 0,
+          matche.matchPlayed ? Math.abs(matche[home] - matche[away]) : 0,
+          matche.matchPlayed ? this.getPoints(matche[home], matche[away]) : 0
         )
       );
     } else {
       let leaderBoard = this.leaderBoards[indexLeaderBoard];
       leaderBoard.matchPlayed += matche.matchPlayed ? 1 : 0;
-      leaderBoard.goalsFor += matche[home];
-      leaderBoard.goalsAgainst += matche[away];
+      leaderBoard.goalsFor += matche.matchPlayed ? matche[home] : 0;
+      leaderBoard.goalsAgainst += matche.matchPlayed ? matche[away] : 0;
       leaderBoard.goalDifference = Math.abs(
         leaderBoard.goalsFor - leaderBoard.goalsAgainst
       );
-      leaderBoard.points += this.getPoints(matche[home], matche[away]);
+      leaderBoard.points += matche.matchPlayed
+        ? this.getPoints(matche[home], matche[away])
+        : 0;
 
       this.leaderBoards[indexLeaderBoard] = leaderBoard;
     }
