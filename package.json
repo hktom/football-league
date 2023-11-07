@@ -18,6 +18,7 @@
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
     "axios": "^0.21.1",
+    "dayjs": "^1.11.10",
     "framer-motion": "^6.5.1",
     "json-fake-server": "^0.0.2",
     "react": "^18.2.0",
