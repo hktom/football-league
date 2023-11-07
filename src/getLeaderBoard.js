@@ -78,10 +78,7 @@ LeaderBoardTeams.prototype.setLeaderBoard = function (team, home, away) {
       leaderBoard.goalDifference = Math.abs(
         leaderBoard.goalsFor - leaderBoard.goalsAgainst
       );
-      leaderBoard.points += this.getPoints(
-        matche[home],
-        matche[away]
-      );
+      leaderBoard.points += this.getPoints(matche[home], matche[away]);
 
       this.leaderBoards[indexLeaderBoard] = leaderBoard;
     }
@@ -96,4 +93,12 @@ LeaderBoardTeams.prototype.getPoints = function (homeScore, awayScore) {
   } else {
     return 0;
   }
+};
+
+LeaderBoardTeams.prototype.orderByPoints = function () {
+  this.leaderBoards.sort((a, b) => {
+    if (a.points > b.points) return -1;
+    if (a.points < b.points) return 1;
+    return 0;
+  });
 };

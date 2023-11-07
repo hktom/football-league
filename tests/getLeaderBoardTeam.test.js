@@ -62,6 +62,7 @@ test("dumbFake", async () => {
   getLeaderBoard.getMatches(matches);
   getLeaderBoard.setLeaderBoard("homeTeam", "homeTeamScore", "awayTeamScore");
   getLeaderBoard.setLeaderBoard("awayTeam", "awayTeamScore", "homeTeamScore");
+  getLeaderBoard.orderByPoints();
   console.log("................. leaderBoards.................... ");
   console.log(getLeaderBoard.leaderBoards);
 //   console.log("................. matches.................... ");
