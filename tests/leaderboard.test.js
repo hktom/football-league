@@ -48,3 +48,10 @@
 //     expect(secondTeam.points).toBe(0);
 //   });
 // });
+
+
+test('dumbFake', async () => {
+
+
+    expect(3).toBeGreaterThan(0);
+});

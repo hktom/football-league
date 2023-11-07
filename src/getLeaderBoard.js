@@ -1,4 +1,4 @@
-export function Match(
+function Match(
   matchDate,
   stadium,
   homeTeam,
@@ -16,13 +16,13 @@ export function Match(
   this.awayTeamScore = awayTeamScore;
 }
 
-export function LeaderBoard(
+function LeaderBoard(
+  teamName,
   matchPlayed,
   goalsFor,
   goalsAgainst,
   goalDifference,
-  points,
-  teamName
+  points
 ) {
   this.teamName = teamName;
   this.matchPlayed = matchPlayed;
@@ -32,7 +32,7 @@ export function LeaderBoard(
   this.points = points;
 }
 
-export function LeaderBoardTeams() {
+export default function LeaderBoardTeams() {
   this.leaderBoards = [];
   this.matches = [];
 }
@@ -53,36 +53,35 @@ LeaderBoardTeams.prototype.getMatches = function (matches) {
   });
 };
 
-LeaderBoardTeams.prototype.setLeaderBoard = function (positionName) {
-
-
+LeaderBoardTeams.prototype.setLeaderBoard = function (team, home, away) {
   this.matches.forEach((matche, index) => {
     let indexLeaderBoard = this.leaderBoards.findIndex(
-      (lead) => lead.teamName === matche[positionName]
+      (lead) => lead.teamName === matche[team]
     );
 
     if (indexLeaderBoard === -1) {
       this.leaderBoards.push(
         new LeaderBoard(
-          matche[positionName],
+          matche[team],
           matche.matchPlayed ? 1 : 0,
-          matche.homeTeamScore,
-          matche.awayTeamScore,
-          Math.abs(matche.homeTeamScore - matche.awayTeamScore),
-          this.getPoints(matche.homeTeamScore, matche.awayTeamScore)
+          matche[home],
+          matche[away],
+          Math.abs(matche[home] - matche[away]),
+          this.getPoints(matche[home], matche[away])
         )
       );
     } else {
       let leaderBoard = this.leaderBoards[indexLeaderBoard];
       leaderBoard.matchPlayed += matche.matchPlayed ? 1 : 0;
-      leaderBoard.goalsFor += matche.homeTeamScore;
-      leaderBoard.goalsAgainst += matche.awayTeamScore;
-      leaderBoard.goalDifference += Math.abs(
+      leaderBoard.goalsFor += matche[home];
+      leaderBoard.goalsAgainst += matche[away];
+      leaderBoard.goalDifference = Math.abs(
         leaderBoard.goalsFor - leaderBoard.goalsAgainst
       );
-      leaderBoard.points +=
-        this.getPoints(matche.homeTeamScore, matche.awayTeamScore) +
-        leaderBoard.points;
+      leaderBoard.points += this.getPoints(
+        matche[home],
+        matche[away]
+      );
 
       this.leaderBoards[indexLeaderBoard] = leaderBoard;
     }

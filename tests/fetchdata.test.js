@@ -1,6 +1,6 @@
 import LeagueService from "../src/services/LeagueService";
 
-test('test fetch data', async () => {
+test('fetchData', async () => {
 
     const leagueService = new LeagueService();
     const {success, matches} = await leagueService.fetchData();
