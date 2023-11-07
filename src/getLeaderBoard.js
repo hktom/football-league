@@ -107,6 +107,8 @@ LeaderBoardTeams.prototype.orderByPoints = function () {
 
 LeaderBoardTeams.prototype.orderByHeadPoints = function () {
 
+    console.log(this.leaderBoards);
+
     let leadsWithSamePoints = [];
     this.leaderBoards.forEach((lead, index, leads)=>{
         
@@ -122,8 +124,10 @@ LeaderBoardTeams.prototype.orderByHeadPoints = function () {
         let matches = this.matches.filter((match)=> match.homeTeam === a.teamName || match.awayTeam === a.teamName || match.homeTeam === b.teamName || match.awayTeam === b.teamName);
 
         let totalWinForA = matches.filter((match)=> {
+            
             if(match.homeTeam === a.teamName) return  match.homeTeamScore > match.awayTeamScore;
             else return match.awayTeamScore > match.homeTeamScore;
+
         }).length;
 
         let totalWinForB = matches.filter((match)=> {
@@ -141,4 +145,67 @@ LeaderBoardTeams.prototype.orderByHeadPoints = function () {
     this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
     this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
 
+};
+
+LeaderBoardTeams.prototype.orderByGoalDifference = function () {
+    
+    let leadsWithSamePoints = [];
+    this.leaderBoards.forEach((lead, index, leads)=>{
+        
+        let foundSameValue = leads.filter((leadFilter)=> leadFilter.points === lead.points);
+        if(foundSameValue.length > 1){
+            leadsWithSamePoints.push(lead);
+        }
+    });
+
+    leadsWithSamePoints.sort((a, b)=>{
+        if(a.goalDifference > b.goalDifference) return -1;
+        if(a.goalDifference < b.goalDifference) return 1;
+        return 0;
+    });
+
+    this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
+    this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
+};
+
+LeaderBoardTeams.prototype.orderByTotalScores = function () {
+    
+    let leadsWithSamePoints = [];
+    this.leaderBoards.forEach((lead, index, leads)=>{
+        
+        let foundSameValue = leads.filter((leadFilter)=> leadFilter.points === lead.points);
+        if(foundSameValue.length > 1){
+            leadsWithSamePoints.push(lead);
+        }
+    });
+
+    leadsWithSamePoints.sort((a, b)=>{
+        if(a.goalsFor > b.goalsFor) return -1;
+        if(a.goalsFor < b.goalsFor) return 1;
+        return 0;
+    });
+
+    this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
+    this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
+};
+
+LeaderBoardTeams.prototype.orderByAlphaBetic = function () {
+    
+    let leadsWithSamePoints = [];
+    this.leaderBoards.forEach((lead, index, leads)=>{
+        
+        let foundSameValue = leads.filter((leadFilter)=> leadFilter.points === lead.points);
+        if(foundSameValue.length > 1){
+            leadsWithSamePoints.push(lead);
+        }
+    });
+
+    leadsWithSamePoints.sort((a, b)=>{
+        if(a.teamName < b.teamName) return -1;
+        if(a.teamName > b.teamName) return 1;
+        return 0;
+    });
+
+    this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
+    this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
 };
