@@ -104,3 +104,41 @@ LeaderBoardTeams.prototype.orderByPoints = function () {
     return 0;
   });
 };
+
+LeaderBoardTeams.prototype.orderByHeadPoints = function () {
+
+    let leadsWithSamePoints = [];
+    this.leaderBoards.forEach((lead, index, leads)=>{
+        
+        let foundSameValue = leads.filter((leadFilter)=> leadFilter.points === lead.points);
+        if(foundSameValue.length > 1){
+            leadsWithSamePoints.push(lead);
+        }
+
+    });
+
+    leadsWithSamePoints.sort((a, b)=>{
+
+        let matches = this.matches.filter((match)=> match.homeTeam === a.teamName || match.awayTeam === a.teamName || match.homeTeam === b.teamName || match.awayTeam === b.teamName);
+
+        let totalWinForA = matches.filter((match)=> {
+            if(match.homeTeam === a.teamName) return  match.homeTeamScore > match.awayTeamScore;
+            else return match.awayTeamScore > match.homeTeamScore;
+        }).length;
+
+        let totalWinForB = matches.filter((match)=> {
+            if(match.homeTeam === b.teamName) return  match.homeTeamScore > match.awayTeamScore;
+            else return match.awayTeamScore > match.homeTeamScore;
+        }).length;
+
+        if(totalWinForA > totalWinForB) return -1;
+        
+        if(totalWinForA < totalWinForB) return 1;
+
+        return 0;
+    });
+
+    this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
+    this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
+
+};

@@ -53,8 +53,8 @@ test("dumbFake", async () => {
       homeTeam: "Switzerland",
       awayTeam: "Cameroon",
       matchPlayed: false,
-      homeTeamScore: '-',
-      awayTeamScore: '-',
+      homeTeamScore: "-",
+      awayTeamScore: "-",
     },
   ];
   var getLeaderBoard = new LeaderBoardTeams();
@@ -63,11 +63,10 @@ test("dumbFake", async () => {
   getLeaderBoard.setLeaderBoard("homeTeam", "homeTeamScore", "awayTeamScore");
   getLeaderBoard.setLeaderBoard("awayTeam", "awayTeamScore", "homeTeamScore");
   getLeaderBoard.orderByPoints();
-  
+  getLeaderBoard.orderByHeadPoints();
 
   expect(getLeaderBoard.leaderBoards[0].teamName).toBe("Brazil");
-  expect(getLeaderBoard.leaderBoards[1].teamName).toBe("Cameroon");
+  expect(getLeaderBoard.leaderBoards[1].teamName).toBe("Serbia");
   expect(getLeaderBoard.leaderBoards[2].teamName).toBe("Switzerland");
-  expect(getLeaderBoard.leaderBoards[3].teamName).toBe("Serbia");
-
+  expect(getLeaderBoard.leaderBoards[3].teamName).toBe("Cameroon");
 });
