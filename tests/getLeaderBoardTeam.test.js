@@ -63,10 +63,11 @@ test("dumbFake", async () => {
   getLeaderBoard.setLeaderBoard("homeTeam", "homeTeamScore", "awayTeamScore");
   getLeaderBoard.setLeaderBoard("awayTeam", "awayTeamScore", "homeTeamScore");
   getLeaderBoard.orderByPoints();
-  console.log("................. leaderBoards.................... ");
-  console.log(getLeaderBoard.leaderBoards);
-//   console.log("................. matches.................... ");
-//   console.log(getLeaderBoard.matches);
+  
 
-  expect(3).toBeGreaterThan(0);
+  expect(getLeaderBoard.leaderBoards[0].teamName).toBe("Brazil");
+  expect(getLeaderBoard.leaderBoards[1].teamName).toBe("Cameroon");
+  expect(getLeaderBoard.leaderBoards[2].teamName).toBe("Switzerland");
+  expect(getLeaderBoard.leaderBoards[3].teamName).toBe("Serbia");
+
 });
