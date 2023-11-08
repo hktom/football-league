@@ -1,6 +1,10 @@
+import { Box, Img } from "@chakra-ui/react";
+
 function NoFound() {
     return (
-        <div>404</div>
+        <Box mx="auto" display={'flex'} justifyContent={'center'}>
+            <Img src="/Images/404.png" alt="404" />
+        </Box>
     );
 }
 

@@ -5,7 +5,7 @@ function Layout({ children, title }) {
     <Box>
       <Heading textAlign={"center"} fontSize={"24px"}>{title}</Heading>
 
-      <Box maxW="90%" mx="auto" mt="20px" minHeight="74vh">
+      <Box maxW="90%" mx="auto" mt="20px" minHeight="76vh">
         {children}
       </Box>
 
