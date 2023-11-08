@@ -2,8 +2,10 @@
   "name": "league-table",
   "version": "0.1.0",
   "private": true,
+  "homepage": ".",
   "devDependencies": {
     "@babel/core": "^7.17.8",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.16.11",
     "babel-jest": "^27.5.1",
     "jest": "^27.5.1",

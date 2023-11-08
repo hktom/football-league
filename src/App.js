@@ -1,6 +1,6 @@
-import { Box, Image, Link as ChakraLink, LinkProps } from "@chakra-ui/react";
+import { Box, Image, Link as ChakraLink } from "@chakra-ui/react";
 import { Link as ReactRouterLink } from "react-router-dom";
-import style from "./App.module.css";
+// import style from "./App.module.css";
 
 const MenuLink = ({ logo, label, link }) => {
   return (
@@ -33,11 +33,11 @@ function App() {
       px="40px"
     >
       <Box flexGrow="1">
-        <Image src="/images/logo.svg" w="110px" />
+        <Image src="images/logo.svg" w="110px" />
       </Box>
 
-      <MenuLink logo="/images/schedule.png" label="Schedule" link="/schedule" />
-      <MenuLink logo="/images/leaderboard.png" label="LeaderBoard" link="/leaderboard" />
+      <MenuLink logo="images/schedule.png" label="Schedule" link="/schedule" />
+      <MenuLink logo="images/leaderboard.png" label="LeaderBoard" link="/leaderboard" />
     </Box>
   );
 }
