@@ -21,13 +21,13 @@ ReactDOM.render(
           <Route exact path="/">
             <Schedule />
           </Route>
-          <Route exact path="/schedule">
+          <Route path="/schedule">
             <Schedule />
           </Route>
-          <Route exact path="/leaderboard">
+          <Route path="/leaderboard">
             <LeaderBoard />
           </Route>
-          <Route path="/*">
+          <Route path="*">
             <NoFound />
           </Route>
         </Switch>
