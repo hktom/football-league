@@ -1,4 +1,5 @@
 import axios from "axios";
+import LeaderBoardTeams from './getLeaderBoard';
 
 /**
  * A class representing a service that processes the data for match schedule
@@ -13,6 +14,7 @@ import axios from "axios";
 class LeagueService {    
     
     matches = [];
+    leaderBoardTeams = [];
     success = false;
 
     /**
@@ -51,7 +53,9 @@ class LeagueService {
      * @returns {Array} List of matches.
      */
     getMatches() {
-        return this.matches;
+        let leaderBoard = new LeaderBoardTeams();
+        leaderBoard.getMatches(this.matches);
+        return leaderBoard.matches;
     }
 
     /**
@@ -69,7 +73,14 @@ class LeagueService {
      * 
      * @returns {Array} List of teams representing the leaderboard.
      */
-    getLeaderboard() {}
+    getLeaderboard() {
+        let leaderBoard = new LeaderBoardTeams();
+        leaderBoard.getMatches(this.matches);
+        leaderBoard.setLeaderBoard("homeTeam", "homeTeamScore", "awayTeamScore");
+        leaderBoard.setLeaderBoard("awayTeam", "awayTeamScore", "homeTeamScore");
+        leaderBoard.orderTeams();
+        this.leaderBoardTeams = leaderBoard.leaderBoards;
+    }
     
     /**
      * Asynchronic function to fetch the data from the server.
@@ -85,7 +96,7 @@ class LeagueService {
           
         try {
             const response = await fetcher.get('/v1/getAllMatches');
-            const { matches, success } = response.data;
+            const { matches, success } = response.data;    
             this.setMatches(matches);
             this.success = success;
         } catch (error) {
