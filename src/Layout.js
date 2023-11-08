@@ -1,4 +1,4 @@
-import { Box, Heading } from "@chakra-ui/react";
+import { Box, Heading, Text } from "@chakra-ui/react";
 
 function Layout({ children, title }) {
   return (
@@ -17,9 +17,9 @@ function Layout({ children, title }) {
         alignItems="center"
         justifyContent="flex-end"
       >
-        <Heading fontSize="14px" color="footer.color">
+        <Text fontSize="14px" color="footer.color">
           API Version:1.0
-        </Heading>
+        </Text>
       </Box>
     </Box>
   );

@@ -2,16 +2,13 @@ import React, { useState, useEffect, useCallback } from "react";
 import LeagueService from "./services/LeagueService";
 import {
   Box,
-  Heading,
   TableContainer,
   Table,
-  TableCaption,
   Thead,
   Tr,
   Th,
   Tbody,
   Td,
-  Tfoot,
 } from "@chakra-ui/react";
 import Layout from "./Layout";
 import { AwayTeam, HomeTeam } from "./Team";
