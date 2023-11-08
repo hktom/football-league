@@ -208,3 +208,54 @@ LeaderBoardTeams.prototype.orderByAlphaBetic = function () {
     this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
     this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
 };
+
+LeaderBoardTeams.prototype.orderTeams = function () {
+  
+  // order by points
+  this.orderByPoints();
+
+  let leadsWithSamePoints = [];
+
+  this.leaderBoards.forEach((lead, index, leads)=>{
+        
+    let foundSameValue = leads.filter((leadFilter)=> leadFilter.points === lead.points);
+    if(foundSameValue.length > 1){
+        leadsWithSamePoints.push(lead);
+    }
+  });
+
+  if(leadsWithSamePoints.length === 0){
+       // if there is no team with same points
+      return
+  }
+
+  let matches = this.matches.filter((match)=>{
+    let indexA = leadsWithSamePoints.findIndex((lead)=> lead.teamName === match.homeTeam);
+    let indexB = leadsWithSamePoints.findIndex((lead)=> lead.teamName === match.awayTeam);
+
+    return indexA !== -1 && indexB !== -1;
+});
+
+    // check if there is more than 2 teams with same points
+    if(leadsWithSamePoints.length > 2) {
+      return this.orderByHeadPoints();
+    }
+
+    // check if in their head matches there is a winner
+    if(matches[0].homeTeamScore !== matches[0].awayTeamScore){
+        return this.orderByHeadPoints();
+    }
+
+    // check if the got difference in goals difference
+    if(leadsWithSamePoints[0].goalDifference !== leadsWithSamePoints[1].goalDifference){
+        return this.orderByGoalDifference();
+    }
+
+    // check if the got difference in goals for
+    if(leadsWithSamePoints[0].goalsFor !== leadsWithSamePoints[1].goalsFor){
+        return this.orderByGoalFor();
+    }
+
+    // check if the got difference in alpha betic
+    return this.orderByAlphaBetic();
+};

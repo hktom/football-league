@@ -62,7 +62,8 @@ test("dumbFake", async () => {
   getLeaderBoard.getMatches(matches);
   getLeaderBoard.setLeaderBoard("homeTeam", "homeTeamScore", "awayTeamScore");
   getLeaderBoard.setLeaderBoard("awayTeam", "awayTeamScore", "homeTeamScore");
-  getLeaderBoard.orderByPoints();
+  // getLeaderBoard.orderByPoints();
+  getLeaderBoard.orderTeams();
   
 
   expect(getLeaderBoard.leaderBoards[0].teamName).toBe("Brazil");
