@@ -1,4 +1,4 @@
-import { Box, Heading, Image } from "@chakra-ui/react";
+import { Box, Text, Image } from "@chakra-ui/react";
 
 export function HomeTeam({ label, score }) {
   return (
@@ -9,9 +9,9 @@ export function HomeTeam({ label, score }) {
         alignItems="center"
         justifyItems="flex-end"
       >
-        <Heading px="0px" flexGrow="1">
+        <Text className="bold-cell" px="0px" flexGrow="1">
           {label}
-        </Heading>
+        </Text>
         <Image
           src={`https://flagsapi.codeaid.io/${label}.png`}
           alt={label}
@@ -21,7 +21,7 @@ export function HomeTeam({ label, score }) {
           objectFit={"cover"}
         />
       </Box>
-      <Heading px="0px">{score}</Heading>
+      <Text className="bold-cell" px="0px">{score}</Text>
     </Box>
   );
 }
@@ -29,7 +29,7 @@ export function HomeTeam({ label, score }) {
 export function AwayTeam({ label, score }) {
   return (
     <Box display="flex" alignItems="center" justifyItems="flex-start">
-      <Heading pr="20px">{score}</Heading>
+      <Text className="bold-cell" pr="20px">{score}</Text>
       <Image
         src={`https://flagsapi.codeaid.io/${label}.png`}
         alt={label}
@@ -38,18 +38,23 @@ export function AwayTeam({ label, score }) {
         mx="20xp"
         objectFit={"cover"}
       />
-      <Heading px="20px">{label}</Heading>
+      <Text className="bold-cell" px="20px">{label}</Text>
     </Box>
   );
 }
 
-export function Team({ label, flag }) {
+export function SimpleTeam({ label }) {
   return (
     <Box display="flex" alignItems="center" justifyItems="flex-start">
       <Box>
-        <Image src={flag} alt={label} w="53px" h="37px" />
+        <Image
+          src={`https://flagsapi.codeaid.io/${label}.png`}
+          alt={label}
+          w="53px"
+          h="37px"
+        />
       </Box>
-      <Heading px="20px">{label}</Heading>
+      <Text className="bold-cell" px="20px">{label}</Text>
     </Box>
   );
 }

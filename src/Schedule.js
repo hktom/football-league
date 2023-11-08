@@ -23,7 +23,7 @@ function Schedule() {
     const leagueService = new LeagueService();
     await leagueService.fetchData();
     if (leagueService.success) {
-      setData(leagueService.matches);
+      setData(leagueService.getMatches());
     }
   }, []);
 
@@ -37,11 +37,11 @@ function Schedule() {
         <Table variant="simple">
           <Thead h="40px" backgroundColor="table.bg_header">
             <Tr>
-              <Th textAlign="left">Date/Time</Th>
-              <Th textAlign="left">Stadium</Th>
-              <Th textAlign="right">Home Team</Th>
-              <th textAlign="center"></th>
-              <Th textAlign="left">Away Team</Th>
+              <Th className="text-left">Date/Time</Th>
+              <Th className="text-left">Stadium</Th>
+              <Th className="text-right">Home Team</Th>
+              <th className="text-center"></th>
+              <Th className="text-left">Away Team</Th>
             </Tr>
           </Thead>
           <Tbody>
@@ -51,18 +51,22 @@ function Schedule() {
                 key={index}
                 backgroundColor={index % 2 !== 0 ? "table.bg_striped" : "#fff"}
               >
-                <Td textAlign="left">{match.matchDate}</Td>
-                <Td textAlign="left">
-                  {match.stadium}
+                <Td className="text-left">
+                  <Box as="span" display="block" className="text-right">
+                    {match.matchDate[0]} <br /> {match.matchDate[1]}
+                  </Box>
                 </Td>
-                <Td textAlign="right" px={"0"}  w="45%">
+                <Td className="text-left">{match.stadium}</Td>
+                <Td className="text-right" px={"0"} w="45%">
                   <HomeTeam
                     label={match.homeTeam}
                     score={match.homeTeamScore}
                   />
                 </Td>
-                <Td textAlign="center" w="4px" px={"10px"}>:</Td>
-                <Td textAlign="left" px={"0"}>
+                <Td className="text-center" w="4px" px={"10px"}>
+                  :
+                </Td>
+                <Td className="text-left" px={"0"}>
                   <AwayTeam
                     label={match.awayTeam}
                     score={match.awayTeamScore}

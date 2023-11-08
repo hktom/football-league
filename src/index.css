@@ -1,6 +1,34 @@
-body {
+/* body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+ */
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;600;700;800&display=swap');
+
+.text-left {
+  text-align: left !important;
+}
+
+.text-right {
+  text-align: right !important;
+}
+
+.text-center{
+  text-align: center !important;
+}
+
+th{
+  font-size: 12px !important;
+  font-weight: bold !important;
+}
+
+td{
+  font-size: 14px;
+}
+
+.bold-cell{
+  font-size: 16px !important;
+  font-weight: bold;
+}

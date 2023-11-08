@@ -1,5 +1,5 @@
 import axios from "axios";
-import LeaderBoardTeams from './getLeaderBoard';
+import LeaderBoardTeams from "../getLeaderBoard";
 
 /**
  * A class representing a service that processes the data for match schedule
@@ -79,7 +79,8 @@ class LeagueService {
         leaderBoard.setLeaderBoard("homeTeam", "homeTeamScore", "awayTeamScore");
         leaderBoard.setLeaderBoard("awayTeam", "awayTeamScore", "homeTeamScore");
         leaderBoard.orderTeams();
-        this.leaderBoardTeams = leaderBoard.leaderBoards;
+        // this.leaderBoardTeams = leaderBoard.leaderBoards;
+        return leaderBoard.leaderBoards;
     }
     
     /**

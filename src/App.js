@@ -12,6 +12,7 @@ const MenuLink = ({ logo, label, link }) => {
       justifyItems="flex-start"
       ml="40px"
       color={"header.menu"}
+      fontSize="16"
     >
       <Image src={logo} h="25px" mr="5px" />
       {label}

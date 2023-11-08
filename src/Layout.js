@@ -3,7 +3,7 @@ import { Box, Heading } from "@chakra-ui/react";
 function Layout({ children, title }) {
   return (
     <Box>
-      <Heading textAlign={"center"} fontSize={"menu.px"}>{title}</Heading>
+      <Heading textAlign={"center"} fontSize={"24px"}>{title}</Heading>
 
       <Box maxW="90%" mx="auto" mt="20px" minHeight="74vh">
         {children}
