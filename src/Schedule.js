@@ -37,8 +37,8 @@ function Schedule() {
         <Table variant="simple">
           <Thead h="40px" backgroundColor="table.bg_header">
             <Tr>
-              <Th className="text-left">Date/Time</Th>
-              <Th className="text-left">Stadium</Th>
+              <Th className="text-left hide-on-mobile">Date/Time</Th>
+              <Th className="text-left hide-on-tablet">Stadium</Th>
               <Th className="text-right">Home Team</Th>
               <th className="text-center"></th>
               <Th className="text-left">Away Team</Th>
@@ -51,12 +51,12 @@ function Schedule() {
                 key={index}
                 backgroundColor={index % 2 !== 0 ? "table.bg_striped" : "#fff"}
               >
-                <Td className="text-left">
+                <Td className="text-left hide-on-mobile">
                   <Box as="span" display="block" className="text-right">
                     {match.matchDate[0]} <br /> {match.matchDate[1]}
                   </Box>
                 </Td>
-                <Td className="text-left">{match.stadium}</Td>
+                <Td className="text-left hide-on-tablet">{match.stadium}</Td>
                 <Td className="text-right" px={"0"} w="45%">
                   <HomeTeam
                     label={match.homeTeam}

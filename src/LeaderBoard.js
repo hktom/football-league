@@ -40,7 +40,7 @@ function LeaderBoard() {
               <Th className="text-left">team Name</Th>
               <Th className="text-center">MP</Th>
               <Th className="text-center">GF</Th>
-              <th className="text-center">GA</th>
+              <th className="text-center hide-on-mobile">GA</th>
               <Th className="text-center">Points</Th>
             </Tr>
           </Thead>
@@ -56,8 +56,8 @@ function LeaderBoard() {
                 </Td>
                 <Td className="text-center" w={"10%"}>{leader.matchPlayed}</Td>
                 <Td className="text-center" w={"10%"}>{leader.goalsFor}</Td>
-                <Td className="text-center" w={"10%"}>{leader.goalsAgainst}</Td>
-                <Td className="text-center" w={"10%"}>
+                <Td className="text-center hide-on-mobile" w={"10%"}>{leader.goalsAgainst}</Td>
+                <Td className="text-center" w={"10%"} color="header.bg" fontWeight={'bold'} fontSize={"16px"}>
                   {leader.points}
                 </Td>
               </Tr>

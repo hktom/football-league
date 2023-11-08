@@ -32,3 +32,17 @@ td{
   font-size: 16px !important;
   font-weight: bold;
 }
+
+@media screen and (max-width: 750px) {
+  
+  .hide-on-tablet{
+    display: none !important;
+  }
+}
+
+@media screen and (max-width: 500px) {
+  
+  .hide-on-mobile{
+    display: none !important;
+  }
+}
