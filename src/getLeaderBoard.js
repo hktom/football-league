@@ -118,7 +118,7 @@ LeaderBoardTeams.prototype.orderByHeadPoints = function () {
 
     });
 
-    leadsWithSamePoints = this.orderForTwoMore(leadsWithSamePoints);
+    leadsWithSamePoints = this.orderHeadPointList(leadsWithSamePoints);
 
 
     this.leaderBoards = this.leaderBoards.slice(leadsWithSamePoints.length);
@@ -127,7 +127,7 @@ LeaderBoardTeams.prototype.orderByHeadPoints = function () {
 };
 
 
-LeaderBoardTeams.prototype.orderForTwoMore = function (leadsWithSamePoints) {
+LeaderBoardTeams.prototype.orderHeadPointList = function (leadsWithSamePoints) {
 
 
     let matches = this.matches.filter((match)=>{
@@ -167,7 +167,7 @@ LeaderBoardTeams.prototype.orderByGoalDifference = function () {
     this.leaderBoards = leadsWithSamePoints.concat(this.leaderBoards);
 };
 
-LeaderBoardTeams.prototype.orderByTotalScores = function () {
+LeaderBoardTeams.prototype.orderByGoalFor = function () {
     
     let leadsWithSamePoints = [];
     this.leaderBoards.forEach((lead, index, leads)=>{

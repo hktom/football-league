@@ -35,7 +35,7 @@ test("dumbFake", async () => {
       homeTeam: "Brazil",
       awayTeam: "Switzerland",
       matchPlayed: true,
-      homeTeamScore: 3,
+      homeTeamScore: 4,
       awayTeamScore: 2,
     },
     {
@@ -63,10 +63,10 @@ test("dumbFake", async () => {
   getLeaderBoard.setLeaderBoard("homeTeam", "homeTeamScore", "awayTeamScore");
   getLeaderBoard.setLeaderBoard("awayTeam", "awayTeamScore", "homeTeamScore");
   getLeaderBoard.orderByPoints();
-  getLeaderBoard.orderByGoalDifference();
+  getLeaderBoard.orderByGoalFor();
 
-  expect(getLeaderBoard.leaderBoards[0].teamName).toBe("Serbia");
-  expect(getLeaderBoard.leaderBoards[1].teamName).toBe("Brazil");
+  expect(getLeaderBoard.leaderBoards[0].teamName).toBe("Brazil");
+  expect(getLeaderBoard.leaderBoards[1].teamName).toBe("Serbia");
   expect(getLeaderBoard.leaderBoards[2].teamName).toBe("Cameroon");
   expect(getLeaderBoard.leaderBoards[3].teamName).toBe("Switzerland");
 });
